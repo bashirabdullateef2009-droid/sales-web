@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AyoTech Sales🧑‍💻</title>
-<link rel="icon" href="ayotech-icon.png" type="image/png">
 <meta name="description" content="AyoTech tests every laptop, monitor, gaming system and TV against its own spec sheet, then sells the ones that hold up.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +14,10 @@
 <header>
   <div class="wrap nav-row">
     <a href="#home" class="logo"><img src="ayotech-icon.png" alt="" class="logo-mark">AYOTECH<span>LAPTOPS · MONITORS · GAMING · TV</span></a>
-    <nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="siteNav">
       <ul>
         <li><a href="#laptops">Laptops</a></li>
         <li><a href="#monitors">Monitors</a></li>
