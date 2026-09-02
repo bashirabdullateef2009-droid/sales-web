@@ -1,5 +1,70 @@
 
 (function(){
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if(!revealEls.length) return;
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(function(el){ observer.observe(el); });
+})();
+
+(function(){
+  var loader = document.getElementById('pageLoader');
+  function hideLoader(){
+    document.body.classList.add('loaded');
+    if(loader){
+      loader.classList.add('hidden');
+      setTimeout(function(){ loader.style.display = 'none'; }, 550);
+    }
+  }
+  if(document.readyState === 'complete'){
+    setTimeout(hideLoader, 500);
+  } else {
+    window.addEventListener('load', function(){
+      setTimeout(hideLoader, 500);
+    });
+  }
+  setTimeout(hideLoader, 2500);
+})();
+
+(function(){
+  var wrap = document.querySelector('.diagram-wrap');
+  var layer = document.getElementById('diagramFloat');
+  if(!wrap || !layer) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(window.matchMedia('(max-width: 860px)').matches) return;
+
+  var rafId = null;
+  wrap.addEventListener('mousemove', function(e){
+    var rect = wrap.getBoundingClientRect();
+    var px = (e.clientX - rect.left) / rect.width - 0.5;
+    var py = (e.clientY - rect.top) / rect.height - 0.5;
+    if(rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(function(){
+      var rotY = px * 14;
+      var rotX = py * -10;
+      layer.style.setProperty('--tiltX', rotX.toFixed(2) + 'deg');
+      layer.style.setProperty('--tiltY', rotY.toFixed(2) + 'deg');
+      layer.style.animationPlayState = 'paused';
+      layer.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+    });
+  });
+  wrap.addEventListener('mouseleave', function(){
+    layer.style.transform = '';
+    layer.style.animationPlayState = 'running';
+  });
+})();
+
+(function(){
   var navToggle = document.getElementById('navToggle');
   var siteNav = document.getElementById('siteNav');
   if(navToggle && siteNav){

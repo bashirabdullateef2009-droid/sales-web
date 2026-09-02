@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="pageLoader" aria-hidden="true">
+  <img src="ayotech-icon.png" alt="" class="loader-mark">
+  <div class="loader-bar"><span></span></div>
+</div>
 <header>
   <div class="wrap nav-row">
     <a href="#home" class="logo"><img src="ayotech-icon.png" alt="" class="logo-mark">ATECH<span>LAPTOPS · MONITORS · GAMING · TV</span></a>
@@ -68,6 +72,7 @@
           </div>
         </div>
         <div class="diagram-wrap">
+          <div class="float-layer" id="diagramFloat">
           <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a laptop with measured specifications for display, hinge, battery life and ports">
             <rect x="120" y="40" width="220" height="150" rx="6" fill="none" stroke="#131C27" stroke-width="2"/>
             <rect x="132" y="52" width="196" height="126" fill="#E2E3DC"/>
@@ -94,6 +99,7 @@
             <text class="callout-label lbl4" x="330" y="316">PORTS</text>
             <text class="callout-value lbl4" x="330" y="330">2× Thunderbolt, both full-speed</text>
           </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -102,16 +108,16 @@
   <!-- LAPTOPS -->
   <section class="category" id="laptops">
     <div class="wrap">
-      <div class="category-head">
+      <div class="category-head" data-reveal>
         <h2>Laptops</h2>
         <p class="prose">The AT-L series. Four bodies for four ways of working — a travel-weight everyday machine, a colour-accurate build for editing, a 16" workhorse for heavier loads, and a thin 13" for people who want a laptop to disappear into a bag.</p>
       </div>
       <div class="category-body">
-        <figure class="cat-image">
-          <img src="https://images.unsplash.com/photo-1591051475629-5459f4f030e2?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="AyoTech laptop, closed, on a dark desk">
+        <figure class="cat-image" data-reveal>
+          <img src="https://images.unsplash.com/photo-1591051475629-5459f4f030e2?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="ATech laptop, closed, on a dark desk">
           <figcaption>AT-L16 Forge, shown closed</figcaption>
         </figure>
-        <div class="spec-table" data-category="laptops">
+        <div class="spec-table" data-category="laptops" data-reveal>
           <div class="spec-row">
             <div class="spec-model">AT-L13 Air<span class="code">13.3" · 1.05kg</span></div>
             <div class="spec-detail">16GB / 512GB · 24h battery</div>
@@ -144,12 +150,12 @@
   <!-- MONITORS -->
   <section class="category flip" id="monitors">
     <div class="wrap">
-      <div class="category-head">
+      <div class="category-head" data-reveal>
         <h2>Monitors</h2>
         <p class="prose">The AT-M series. Refresh rate and response time are the two numbers brands round in their favour, so we clock them ourselves before anything goes on this list.</p>
       </div>
       <div class="category-body">
-        <div class="spec-table" data-category="monitors">
+        <div class="spec-table" data-category="monitors" data-reveal>
           <div class="spec-row">
             <div class="spec-model">AT-M24 Work<span class="code">24" FHD · height-adjustable</span></div>
             <div class="spec-detail">100Hz · IPS</div>
@@ -175,8 +181,8 @@
             <button class="add-btn" data-name="AT-M34 Curve" data-price="750000">Add to bag</button>
           </div>
         </div>
-        <figure class="cat-image">
-          <img src="https://images.unsplash.com/photo-1570485071395-29b575ea3b4e?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="AyoTech monitor on a minimal desk setup">
+        <figure class="cat-image" data-reveal>
+          <img src="https://images.unsplash.com/photo-1570485071395-29b575ea3b4e?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="ATech monitor on a minimal desk setup">
           <figcaption>AT-M32 Canvas, shown on desk</figcaption>
         </figure>
       </div>
@@ -186,16 +192,16 @@
   <!-- GAMING SYSTEMS -->
   <section class="category" id="gaming">
     <div class="wrap">
-      <div class="category-head">
+      <div class="category-head" data-reveal>
         <h2>Gaming systems</h2>
         <p class="prose">The AT-G series. Full towers, a handheld and a living-room console — each tested at sustained load, not a five-minute benchmark run, since that's the difference between a quoted frame rate and the one you'll actually see an hour in.</p>
       </div>
       <div class="category-body">
-        <figure class="cat-image">
-          <img src="https://images.unsplash.com/photo-1756694938594-e760b4bd3bfb?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="AyoTech gaming keyboard close-up with RGB lighting">
+        <figure class="cat-image" data-reveal>
+          <img src="https://images.unsplash.com/photo-1756694938594-e760b4bd3bfb?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="ATech gaming keyboard close-up with RGB lighting">
           <figcaption>AT-G2 Strike, keyboard detail</figcaption>
         </figure>
-        <div class="spec-table" data-category="gaming">
+        <div class="spec-table" data-category="gaming" data-reveal>
           <div class="spec-row">
             <div class="spec-model">AT-G0 Console<span class="code">living-room console</span></div>
             <div class="spec-detail">2TB · 4K / 120fps output</div>
@@ -228,12 +234,12 @@
   <!-- TVS -->
   <section class="category flip" id="tvs">
     <div class="wrap">
-      <div class="category-head">
+      <div class="category-head" data-reveal>
         <h2>TVs</h2>
         <p class="prose">The AT-T series. We watch each set for a week in an ordinary living room before it's listed here — not a blacked-out showroom, since that's not where you'll actually be watching it.</p>
       </div>
       <div class="category-body">
-        <div class="spec-table" data-category="tvs">
+        <div class="spec-table" data-category="tvs" data-reveal>
           <div class="spec-row">
             <div class="spec-model">AT-T43<span class="code">43" 4K · compact</span></div>
             <div class="spec-detail">60Hz</div>
@@ -259,8 +265,8 @@
             <button class="add-btn" data-name="AT-T77" data-price="3200000">Add to bag</button>
           </div>
         </div>
-        <figure class="cat-image">
-          <img src="https://images.unsplash.com/photo-1521607630287-ee2e81ad3ced?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="AyoTech TV mounted in a living room">
+        <figure class="cat-image" data-reveal>
+          <img src="https://images.unsplash.com/photo-1521607630287-ee2e81ad3ced?auto=format&fit=crop&fm=jpg&q=85&w=1400" alt="ATech TV mounted in a living room">
           <figcaption>AT-T65, shown wall-mounted</figcaption>
         </figure>
       </div>
@@ -269,7 +275,7 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="wrap about-grid">
+    <div class="wrap about-grid" data-reveal>
       <h2>How we test</h2>
       <div class="prose" style="max-width:68ch;">
         <p>ATech exists because a spec sheet can be true and still be misleading. A "120Hz" panel that only holds 120Hz on a cooled lab bench isn't 120Hz on your desk in a warm room. We buy the same laptops, monitors, gaming systems and TVs anyone can buy, run them under the load and hours you'd actually put them through, and sell the ones that hold up against their own claims.</p>
@@ -284,15 +290,15 @@
     <div class="wrap">
       <h2>Field notes</h2>
       <div class="notes-grid">
-        <div class="note">
+        <div class="note" data-reveal>
           <p>"Bought the AT-L16 Forge for editing 4K timelines on set. Ran a six-hour session without a single thermal throttle."</p>
           <cite>— Independent filmmaker</cite>
         </div>
-        <div class="note">
+        <div class="note" data-reveal>
           <p>"Expected the usual overselling on response time with an ultrawide. The AT-M34 Curve is the first one that's actually kept up in ranked matches."</p>
           <cite>— Competitive gamer</cite>
         </div>
-        <div class="note">
+        <div class="note" data-reveal>
           <p>"The AT-T65 replaced a five-year-old set. Didn't expect the difference to be this obvious in a normal living room, not a showroom."</p>
           <cite>— Home buyer</cite>
         </div>
@@ -302,7 +308,7 @@
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="wrap contact-grid">
+    <div class="wrap contact-grid" data-reveal>
       <div>
         <h2>Ask before you buy</h2>
         <p class="prose">Send us the model you're weighing up and what you'll actually use it for — editing, ranked play, an office desk — and we'll tell you straight if it's the right fit or if something else on this page suits better.</p>
@@ -318,7 +324,7 @@
 
 <footer>
   <div class="wrap footer-row">
-    <span class="logo" style="font-size:1.1rem;"><img src="ayotech-icon.png" alt="AyoTech" class="logo-mark">ATECH</span>
+    <span class="logo" style="font-size:1.1rem;"><img src="ayotech-icon.png" alt="ATech" class="logo-mark">ATECH</span>
     <nav>
       <ul>
         <li><a href="#laptops">Laptops</a></li>

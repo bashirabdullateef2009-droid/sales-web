@@ -31,6 +31,67 @@
   button{font-family:inherit;cursor:pointer;border:none;background:none;}
   :focus-visible{outline:2px solid var(--signal);outline-offset:2px;}
 
+  /* ---------- Page loader ---------- */
+  #pageLoader{
+    position:fixed;inset:0;z-index:999;
+    background:var(--paper);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    transition:opacity 0.5s ease, visibility 0.5s ease;
+  }
+  #pageLoader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  .loader-mark{
+    width:64px;height:64px;object-fit:contain;
+    animation:loaderPulse 1.1s ease-in-out infinite;
+  }
+  @keyframes loaderPulse{
+    0%,100%{transform:scale(1);opacity:1;}
+    50%{transform:scale(0.88);opacity:0.7;}
+  }
+  .loader-bar{width:140px;height:2px;background:var(--hairline);overflow:hidden;}
+  .loader-bar span{
+    display:block;width:40%;height:100%;background:var(--signal);
+    animation:loaderSlide 1.1s ease-in-out infinite;
+  }
+  @keyframes loaderSlide{
+    0%{transform:translateX(-100%);}
+    100%{transform:translateX(350%);}
+  }
+
+  /* ---------- Entrance animation ---------- */
+  @keyframes fadeSlideDown{
+    from{opacity:0;transform:translateY(-10px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  @keyframes fadeSlideUp{
+    from{opacity:0;transform:translateY(16px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  header .logo,header nav#siteNav li,header .cart-toggle{
+    opacity:0;animation:fadeSlideDown 0.5s ease forwards;animation-play-state:paused;
+  }
+  body.loaded header .logo,body.loaded header nav#siteNav li,body.loaded header .cart-toggle{
+    animation-play-state:running;
+  }
+  header .logo{animation-delay:0.05s;}
+  header nav#siteNav li:nth-child(1){animation-delay:0.12s;}
+  header nav#siteNav li:nth-child(2){animation-delay:0.17s;}
+  header nav#siteNav li:nth-child(3){animation-delay:0.22s;}
+  header nav#siteNav li:nth-child(4){animation-delay:0.27s;}
+  header nav#siteNav li:nth-child(5){animation-delay:0.32s;}
+  header nav#siteNav li:nth-child(6){animation-delay:0.37s;}
+  header nav#siteNav li:nth-child(7){animation-delay:0.42s;}
+  header .cart-toggle{animation-delay:0.4s;}
+
+  [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease;}
+  [data-reveal].is-visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    header .logo,header nav#siteNav li,header .cart-toggle{animation:none;opacity:1;transform:none;}
+    [data-reveal]{opacity:1;transform:none;transition:none;}
+    .loader-mark,.loader-bar span{animation:none;}
+    .diagram-wrap .float-layer{animation:none;transform:none !important;}
+  }
+
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
   .prose{max-width:62ch;}
 
@@ -151,8 +212,21 @@
   .crosshair.tl{top:8px;left:8px;}
   .crosshair.br{bottom:8px;right:8px;}
 
-  .diagram-wrap{position:relative;}
+  .diagram-wrap{position:relative;perspective:900px;}
   .diagram-wrap svg{width:100%;height:auto;}
+  .diagram-wrap .float-layer{
+    animation:floatY 4.5s ease-in-out infinite;
+    transition:transform 0.15s ease-out;
+    transform-style:preserve-3d;
+  }
+  @keyframes floatY{
+    0%,100%{transform:translateY(0px) rotateX(0deg) rotateY(0deg);}
+    50%{transform:translateY(-14px) rotateX(0deg) rotateY(0deg);}
+  }
+  @media (max-width:860px){
+    .diagram-wrap{perspective:none;}
+    .diagram-wrap .float-layer{animation:none;transform:none !important;}
+  }
   .leader{stroke:var(--steel);stroke-width:1;fill:none;stroke-dasharray:140;stroke-dashoffset:140;}
   .leader-dot{fill:var(--signal);}
   .callout-label{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--ink);opacity:0;}
@@ -222,7 +296,16 @@
   .notes{padding:70px 0;border-top:1px solid var(--hairline);}
   .notes h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:36px;}
   .notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .note{border:1px solid var(--hairline);padding:24px;background:var(--panel);}
+  .note{
+    border:1px solid var(--hairline);padding:24px;background:var(--panel);
+    transition-delay:0s;
+    transition-property:opacity,transform,box-shadow,border-color;
+    transition-duration:0.6s,0.3s,0.25s,0.25s;
+    transition-timing-function:ease;
+  }
+  .note:hover{transform:translateY(-4px);border-color:var(--steel);box-shadow:0 8px 18px rgba(19,28,39,0.08);}
+  .notes-grid .note:nth-child(2){transition-delay:0.1s;}
+  .notes-grid .note:nth-child(3){transition-delay:0.2s;}
   .note p{font-size:0.95rem;margin-bottom:16px;}
   .note cite{
     font-style:normal;font-family:'IBM Plex Mono',monospace;
